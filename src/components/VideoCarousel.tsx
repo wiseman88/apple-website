@@ -7,10 +7,15 @@ import { useEffect, useRef, useState } from 'react'
 import { hightlightsSlides } from '../constants'
 import { pauseImg, playImg, replayImg } from '../utils'
 
+type VideoType = HTMLVideoElement
+type SpanType = HTMLSpanElement
+type DivType = HTMLDivElement | HTMLSpanElement
+type EventType = any
+
 const VideoCarousel = () => {
-  const videoRef = useRef([])
-  const videoSpanRef = useRef([])
-  const videoDivRef = useRef([])
+  const videoRef = useRef<VideoType[]>([])
+  const videoSpanRef = useRef<SpanType[]>([])
+  const videoDivRef = useRef<DivType[]>([])
 
   const [video, setVideo] = useState({
     isEnd: false,
@@ -20,7 +25,7 @@ const VideoCarousel = () => {
     isPlaying: false,
   })
 
-  const [loadedData, setLoadedData] = useState([])
+  const [loadedData, setLoadedData] = useState<EventType[]>([])
   const { isEnd, isLastVideo, startPlay, videoId, isPlaying } = video
 
   useGSAP(() => {
@@ -114,10 +119,10 @@ const VideoCarousel = () => {
     }
   }, [startPlay, videoId, isPlaying, loadedData])
 
-  const handleProcess = (type: string, i: number) => {
+  const handleProcess = (type: string, i?: number) => {
     switch (type) {
       case 'video-end':
-        setVideo((pre) => ({ ...pre, isEnd: true, videoId: i + 1 }))
+        setVideo((pre) => ({ ...pre, isEnd: true, videoId: (i ?? 0) + 1 }))
         break
 
       case 'video-last':
@@ -141,7 +146,7 @@ const VideoCarousel = () => {
     }
   }
 
-  const handleLoadedMetaData = (i, e: any) =>
+  const handleLoadedMetaData = (_i: any, e: any) =>
     setLoadedData((pre) => [...pre, e])
 
   return (
@@ -159,7 +164,7 @@ const VideoCarousel = () => {
                   } pointer-events-none`}
                   preload='auto'
                   muted
-                  ref={(el) => (videoRef.current[i] = el)}
+                  ref={(el) => el && (videoRef.current[i] = el)}
                   onEnded={() =>
                     i !== 3
                       ? handleProcess('video-end', i)
@@ -192,11 +197,11 @@ const VideoCarousel = () => {
             <span
               key={i}
               className='mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer'
-              ref={(el) => (videoDivRef.current[i] = el)}
+              ref={(el) => el && (videoDivRef.current[i] = el)}
             >
               <span
                 className='absolute h-full w-full rounded-full'
-                ref={(el) => (videoSpanRef.current[i] = el)}
+                ref={(el) => el && (videoSpanRef.current[i] = el)}
               />
             </span>
           ))}
