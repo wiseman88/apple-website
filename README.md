@@ -23,3 +23,11 @@ Before you begin, ensure you have the following installed on your system:
    ```bash
    git clone https://github.com/wiseman88/apple-website.git
    ```
+2. Navigate into the project directory:
+   ```bash
+   cd apple-website
+   ```
+3. Install necessary dependencies:
+   ```bash
+   npm install
+   ```
