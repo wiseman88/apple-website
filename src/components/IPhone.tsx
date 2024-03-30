@@ -15,9 +15,11 @@ interface Props {
     img: string
     color: string[]
   }
+  scale: number
+  size: number
 }
 
-const Model: React.FC<Props> = ({ item }) => {
+const Model: React.FC<Props> = ({ item, scale }) => {
   const { nodes, materials } = useGLTF('/models/scene.glb')
   const texture: Texture = useTexture(item.img)
 
@@ -41,7 +43,7 @@ const Model: React.FC<Props> = ({ item }) => {
   }, [materials, item])
 
   return (
-    <group dispose={null}>
+    <group dispose={null} scale={scale}>
       <mesh
         castShadow
         receiveShadow
