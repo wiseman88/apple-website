@@ -7,16 +7,12 @@ import { useEffect, useRef, useState } from 'react'
 import { hightlightsSlides } from '../constants'
 import { pauseImg, playImg, replayImg } from '../utils'
 
-type VideoType = HTMLVideoElement
-type SpanType = HTMLSpanElement
-type DivType = HTMLDivElement | HTMLSpanElement
 type EventType = any
 
 const VideoCarousel = () => {
-  const videoRef = useRef<VideoType[]>([])
-  const videoSpanRef = useRef<SpanType[]>([])
-  const videoDivRef = useRef<DivType[]>([])
-
+  const videoRef = useRef<HTMLVideoElement[]>([])
+  const videoSpanRef = useRef<HTMLSpanElement[]>([])
+  const videoDivRef = useRef<HTMLDivElement[] | HTMLSpanElement[]>([])
   const [video, setVideo] = useState({
     isEnd: false,
     startPlay: false,
