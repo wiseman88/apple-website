@@ -29,6 +29,11 @@ const Model = () => {
 
   const tl = gsap.timeline()
 
+  const rootElement = document.getElementById('root')
+  const eventSource: HTMLElement | undefined = rootElement
+    ? (rootElement.parentNode as HTMLElement)
+    : undefined
+
   useEffect(() => {
     if (size === 'large') {
       animateWithGsapTimeline(tl, small, smallRotation, '#view1', '#view2', {
@@ -86,7 +91,7 @@ const Model = () => {
                 right: 0,
                 overflow: 'hidden',
               }}
-              eventSource={document.getElementById('root')}
+              eventSource={eventSource}
             >
               <View.Port />
             </Canvas>
