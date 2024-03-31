@@ -15,7 +15,7 @@ interface Props {
     img: string
     color: string[]
   }
-  scale: number
+  scale: any
   size: number
 }
 
