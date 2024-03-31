@@ -1,4 +1,4 @@
-import { Html, OrbitControls, PerspectiveCamera, View } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera, View } from '@react-three/drei'
 import Lights from './Lights'
 import IPhone from './IPhone'
 import Loader from './Loader'
@@ -11,7 +11,7 @@ interface ModelViewProps {
   gsapType: string
   controlRef: React.RefObject<any>
   setRotationState: (size: number) => void
-  size: number
+  size: any
   item: any
 }
 
@@ -28,9 +28,7 @@ const ModelView: React.FC<ModelViewProps> = ({
     <View
       index={index}
       id={gsapType}
-      className={`border-2 border-red-500 w-full h-full ${
-        index === 2
-      } ? 'right-[-100%]' : ''`}
+      className={`absolute w-full h-full ${index === 2 ? 'right-[-100%]' : ''}`}
     >
       <ambientLight intensity={0.3} />
 
