@@ -1,6 +1,7 @@
 import { Html, OrbitControls, PerspectiveCamera, View } from '@react-three/drei'
 import Lights from './Lights'
 import IPhone from './IPhone'
+import Loader from './Loader'
 import { Suspense } from 'react'
 import * as THREE from 'three'
 
@@ -52,13 +53,7 @@ const ModelView: React.FC<ModelViewProps> = ({
         name={`${index === 1} ? 'small': 'large'`}
         position={[0, 0, 0]}
       >
-        <Suspense
-          fallback={
-            <Html>
-              <div>Loading</div>
-            </Html>
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <IPhone
             scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
             item={item}
