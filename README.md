@@ -2,6 +2,14 @@
 
 This project is a clone of the Apple website, aiming to replicate its design and functionality using React.
 
+## Tech stack
+
+- [Vite](https://vitejs.dev/)
+- [React](https://legacy.reactjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [GSAP](https://gsap.com/)
+- [Three](https://threejs.org/)
+
 ## Live Site
 
 You can view the live version of this project [here](https://apple-website-two.vercel.app/).
